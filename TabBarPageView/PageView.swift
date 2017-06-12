@@ -12,8 +12,10 @@ public class PageView: UIView {
     var tabBar: TabBarView
 
     public init(frame: CGRect, tabTitles: [String]) {
-        let titles: [String] = Array(0..<8).map{ "Tab \($0)" }
-        tabBar = TabBarView(titles: titles)
+        let tabItems: [(String, ((Int) -> Void))] = Array(0..<8).map{ ("Tab \($0)", {(index) -> Void in
+            print("selected \(index)")
+        }) }
+        tabBar = TabBarView(items: tabItems)
         
         super.init(frame: frame)
         addSubview(tabBar)

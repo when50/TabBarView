@@ -15,8 +15,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let titles: [String] = Array(0..<8).map{ "Tab \($0)" }
-        tabBar = TabBarView(titles: titles)
+        let titles: [(String, ((Int) -> Void))] = Array(0..<8).map{ ("Tab \($0)", { index in
+            print("selected \(index)")
+        }) }
+        tabBar = TabBarView(items: titles)
         view.addSubview(tabBar)
     }
     
