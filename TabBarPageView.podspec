@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "TabBarPageView"
   s.version      = "0.0.1"
-  s.summary      = "A short description of TabBarPageView."
+  s.summary      = "Top TabBar Container View."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,9 +25,9 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-                   DESC
+                   顶部分页栏，可以水平滚动。
 
-  s.homepage     = "http://EXAMPLE/TabBarPageView"
+  s.homepage     = "http://https://github.com/when50/TabBarView"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -52,7 +52,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "崔海成-xm-ios" => "chc@meitu.com" }
+  s.author             = { "when50" => "when50@outlook.com" }
   # Or just: s.author    = "崔海成-xm-ios"
   # s.authors            = { "崔海成-xm-ios" => "chc@meitu.com" }
   # s.social_media_url   = "http://twitter.com/崔海成-xm-ios"
