@@ -10,7 +10,7 @@ import UIKit
 
 public class TabBarView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var tabItems: [(String, ((Int) -> Void))] = []
-    var selectedIndex = 0
+    var currentTabIndex = 0
     var collectionView: UICollectionView
     
     private var cellForSize: TabCollectionCell
@@ -82,6 +82,15 @@ public class TabBarView: UIView, UICollectionViewDataSource, UICollectionViewDel
     required public init?(coder aDecoder: NSCoder) {
         fatalError()
     }
+    
+    public func setCurrentTabIndex(newIndex: Int) {
+        collectionView.scrollToItem(
+            at: IndexPath(item: newIndex, section: 0),
+            at: newIndex < currentTabIndex ? .left : .right,
+            animated: true)
+        currentTabIndex = newIndex
+        collectionView.reloadData()
+    }
 
     // MARK: UICollectionViewDataSource
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -95,18 +104,18 @@ public class TabBarView: UIView, UICollectionViewDataSource, UICollectionViewDel
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(TabCollectionCell.self)", for: indexPath) as? TabCollectionCell else { fatalError() }
         cell.titleLabel.text = tabItems[indexPath.item].0
-        let style = selectedIndex == indexPath.item ? selectedStyle : unselectedStyle
+        let style = currentTabIndex == indexPath.item ? selectedStyle : unselectedStyle
         style.applyTo(cell)
         return cell
     }
     
     // MARK: UICollectionViewDelegate
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.item != selectedIndex {
-            let selected = IndexPath(item: selectedIndex, section: 0)
-            selectedIndex = indexPath.item
+        if indexPath.item != currentTabIndex {
+            let selected = IndexPath(item: currentTabIndex, section: 0)
+            currentTabIndex = indexPath.item
             collectionView.reloadItems(at: [selected, indexPath])
-            tabItems[indexPath.item].1(selectedIndex)
+            tabItems[indexPath.item].1(currentTabIndex)
         }
     }
     
@@ -120,7 +129,7 @@ public class TabBarView: UIView, UICollectionViewDataSource, UICollectionViewDel
             cellForSize.titleText = tabItems[indexPath.item].0
             cellForSize.sizeToFit()
             
-            let size = cellForSize.bounds.size
+            let size = CGSize(width: cellForSize.bounds.size.width, height: bounds.size.height)
             cacheSizes[indexPath] = size
             return size
         }

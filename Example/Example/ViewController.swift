@@ -10,23 +10,26 @@ import UIKit
 import TabBarPageView
 
 class ViewController: UIViewController {
-    var tabBar: TabBarView!
+    var pageView: PageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let titles: [(String, ((Int) -> Void))] = Array(0..<8).map{ ("Tab \($0)", { index in
-            print("selected \(index)")
-        }) }
-        tabBar = TabBarView(items: titles)
-        view.addSubview(tabBar)
+        var items: [(String, UIView)] = []
+        for i in 0..<8 {
+            let view = UIView(frame: .zero)
+            view.backgroundColor = UIColor(red: CGFloat(arc4random()).truncatingRemainder(dividingBy: 256) / 255, green: CGFloat(arc4random()).truncatingRemainder(dividingBy: 256) / 255, blue: CGFloat(arc4random()).truncatingRemainder(dividingBy: 256) / 255, alpha: 1.0)
+            let item = ("Tab \(i)", view)
+            items.append(item)
+        }
+        pageView = PageView(frame: .zero, tabItems: items)
+        view.addSubview(pageView)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        var frame = tabBar.frame
-        frame.size = CGSize(width: view.bounds.size.width, height: 55)
-        tabBar.frame = frame
+        let frame = view.bounds.offsetBy(dx: 0, dy: 20)
+        pageView.frame = frame
     }
 
     override func didReceiveMemoryWarning() {
