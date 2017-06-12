@@ -53,8 +53,8 @@ Pod::Spec.new do |s|
   #
 
   s.author             = { "when50" => "when50@outlook.com" }
-  # Or just: s.author    = "崔海成-xm-ios"
-  # s.authors            = { "崔海成-xm-ios" => "chc@meitu.com" }
+  # Or just: s.author    = "when50"
+  # s.authors            = { "when50" => "when50@outlook.com" }
   # s.social_media_url   = "http://twitter.com/崔海成-xm-ios"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://EXAMPLE/TabBarPageView.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/when50/TabBarView.git", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.source_files  = "TabBarPageView", "TabBarPageView/**/*.{h,m,swift}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -105,7 +105,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
+  s.resources = "TabBarPageView/*.{xib, plist}"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
